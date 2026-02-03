@@ -25,20 +25,30 @@
 # **Type corrections**:
 # - Categorical variables (level, control, state, probably not city since too many) to category
 # - All continuous variables already are floats in dataset, so no change needed
+#
 # **Collapse factor levels**:
 # - Potentially group states into different regions rather than all 50 individual states
 # - Probably can just simplify control down to public and private
+#
 # **One-hot encoding**:
 # - All categorical types to one-hot encoded columns (like just have "Public" and 0 or 1 to indicate)
+#
 # **Normalize continuous variables**:
-# - 
+# - Use StandardScaler to standardize continuous variables
+#
 # **Drop unnecessary variables**:
+# - Drop identifier columns as they won't help in model training, and
+# probably city as well due to the high amount of different cities
 #
 # **Create target variable (if needed)**:
+# - Create binary target variable based on whether completion rate is above or below 
+# a certain completion rate (subject to change)
 #
 # **Calculate prevalence of target variable**:
+# - Just use .mean() of target variable to get prevalence
 #
 # **Create necessary data partitions (train, tune, test)**:
+# - Use train_test_split from sklearn to create train, tune, and test sets
 #
 
 # #### Job Placement Data
