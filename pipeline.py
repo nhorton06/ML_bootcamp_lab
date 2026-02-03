@@ -12,9 +12,27 @@ from sklearn.preprocessing import StandardScaler
 # Read in data
 college = pd.read_csv('https://github.com/UVADS/DS-3021/blob/main/data/cc_institution_details.csv')
 
-# Drop ID variables
-def drop_cols(data):
-    return data.drop(columns = ['chronname', 'site', 'nicknames'])
+# Drop ID variables and unnecessary columns (and maybe missing values)
+def drop_cols(data, drop_cols = [], drop_missing = False):
+    for col in drop_cols:
+        data = data.drop(columns = [col])
+    if drop_missing:
+        data = data.dropna()
+    return data.drop(columns = drop_cols)
+
+# Correct type issues and collapse factor levels
+def type_and_collapse_college(data, cat_cols = []):
+    for col in cat_cols:
+        data[col] = data[col].astype('category')
+    return data
+
+####################################### Continue from here ########################
+
+
+# One-hot encoding
+def one_hot_encode_college(data):
+    data = one_hot_college(data)
+    return data
 
 # Drop NAs
 def drop_missing_college(data):
