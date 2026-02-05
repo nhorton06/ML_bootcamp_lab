@@ -31,7 +31,8 @@ from sklearn.preprocessing import StandardScaler
 
 # %%
 # Read in data
-college = pd.read_csv('https://github.com/UVADS/DS-3021/blob/main/data/cc_institution_details.csv')
+college = pd.read_csv('https://raw.githubusercontent.com/UVADS/DS-3021/main/data/cc_institution_details.csv')
+print(college.info())
 
 # %%
 # Drop unnecessary columns

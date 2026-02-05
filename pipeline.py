@@ -15,8 +15,10 @@ from sklearn.preprocessing import StandardScaler
 
 # College Completion Dataset
 
+# %%
 # Read in data
-college = pd.read_csv('https://github.com/UVADS/DS-3021/blob/main/data/cc_institution_details.csv')
+college = pd.read_csv('https://raw.githubusercontent.com/UVADS/DS-3021/main/data/cc_institution_details.csv')
+print(college.info())
 
 # Drop ID variables and unnecessary columns (and maybe missing values)
 def drop_cols_college(data, drop_cols = [], drop_missing = False):
@@ -62,7 +64,7 @@ def split_college(data, target_var, test_size = 0.2, tune_size = 0.25, stratify 
     stratify_col = data[target_var] if stratify else None
     train, temp = train_test_split(data, test_size = test_size, random_state = 42, stratify = stratify_col)
     stratify_temp = temp[target_var] if stratify else None
-    tune, test = train_test_split(temp, test_size = 0.5, random_state = 42, stratify = stratify_temp)
+    tune, test = train_test_split(temp, test_size = 1 - tune_size, random_state = 42, stratify = stratify_temp)
 
     print(f'Training set shape: {train.shape}')
     print(f'Tuning set shape: {tune.shape}')
@@ -124,9 +126,10 @@ def split_job(data, target_var, test_size = 0.2, tune_size = 0.25, stratify = Tr
     stratify_col = data[target_var] if stratify else None
     train, temp = train_test_split(data, test_size = test_size, random_state = 42, stratify = stratify_col)
     stratify_temp = temp[target_var] if stratify else None
-    tune, test = train_test_split(temp, test_size = 0.5, random_state = 42, stratify = stratify_temp)
+    tune, test = train_test_split(temp, test_size = 1 - tune_size, random_state = 42, stratify = stratify_temp)
 
     print(f'Training set shape: {train.shape}')
     print(f'Tuning set shape: {tune.shape}')
     print(f'Testing set shape: {test.shape}')
     return train, tune, test
+# %%
